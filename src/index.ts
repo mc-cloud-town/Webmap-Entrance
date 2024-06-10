@@ -2,6 +2,7 @@ import path from 'path';
 
 import 'dotenv/config';
 
+import morgan from 'morgan';
 import session from 'express-session';
 import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
@@ -85,6 +86,7 @@ const hasCTECMember = async (userID?: string) => {
 };
 
 app.use(
+  morgan('dev'),
   cors({
     origin: process.env.CORS_ORIGIN?.split(',') ?? ['http://localhost:3000'],
     optionsSuccessStatus: 200,

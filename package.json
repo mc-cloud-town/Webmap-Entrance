@@ -38,11 +38,13 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@types/morgan": "^1.9.9",
     "cors": "^2.8.5",
     "discord.js": "^14.15.3",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "http-proxy-middleware": "^3.0.0",
+    "morgan": "^1.10.0",
     "undici": "^6.18.2"
   },
   "config": {
