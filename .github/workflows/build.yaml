@@ -2,9 +2,7 @@ name: releaser
 on:
   workflow_dispatch:
   push:
-    branches: [master]
-    paths-ignore:
-      - '!.github/workflows/**'
+    branches: [main]
 
 env:
   # Use docker.io for Docker Hub if empty
