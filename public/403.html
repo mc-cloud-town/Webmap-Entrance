@@ -36,6 +36,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
       }
       a[button] {
         text-decoration: none;
@@ -50,6 +51,16 @@
       }
       a[button]:hover {
         background-color: rgb(87, 186, 24, 0.8);
+      }
+      @media (max-width: 1200px) {
+        .main {
+          width: 60%;
+        }
+      }
+      @media (max-width: 700px) {
+        .main {
+          width: 80%;
+        }
       }
     </style>
   </head>

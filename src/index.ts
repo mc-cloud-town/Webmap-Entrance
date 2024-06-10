@@ -128,9 +128,13 @@ app.get('/callback', async (req, res, next) => {
       req.session.regenerate((err) => {
         if (err) next(err);
         req.session.user = userData;
-        req.session.save((err) => {
+        req.session.save(async (err) => {
           if (err) next(err);
-          res.redirect('/403');
+          if (await hasCTECMember(req.session.user?.id)) {
+            res.redirect('/');
+          } else {
+            res.redirect('/403');
+          }
         });
       });
     } else {
