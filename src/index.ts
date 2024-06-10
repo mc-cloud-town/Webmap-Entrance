@@ -85,7 +85,7 @@ const hasCTECMember = async (userID?: string) => {
 app.use(
   session({
     name: 'ctec-webmap-entrance',
-    secret: process.env.SECRET_KEY,
+    secret: process.env.SECRET_KEY || 'ctec-webmap-entrance',
     resave: false,
     saveUninitialized: true,
     cookie: {
