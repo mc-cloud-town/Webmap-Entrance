@@ -12,10 +12,9 @@ RUN yarn build
 
 FROM node:20 AS production
 
-COPY --from=builder /app/package.json .
-COPY --from=builder /app/node_modules .
-COPY --from=builder /app/dist ./dist
-COPY ./public .
+WORKDIR /app
+
+COPY --from=builder /app .
 
 CMD yarn start
 
