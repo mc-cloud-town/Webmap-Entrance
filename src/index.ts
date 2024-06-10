@@ -1,3 +1,5 @@
+import path from 'path';
+
 import 'dotenv/config';
 
 import session from 'express-session';
@@ -6,7 +8,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { request } from 'undici';
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import type { Request, Response } from 'express';
-import path from 'path';
+import cors from 'cors';
 
 export interface User {
   id: string;
@@ -83,6 +85,10 @@ const hasCTECMember = async (userID?: string) => {
 };
 
 app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN?.split(',') ?? ['http://localhost:3000'],
+    optionsSuccessStatus: 200,
+  }),
   session({
     name: 'ctec-webmap-entrance',
     secret: process.env.SECRET_KEY || 'ctec-webmap-entrance',
