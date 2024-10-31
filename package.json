@@ -45,7 +45,7 @@
     "express-session": "^1.18.0",
     "http-proxy-middleware": "^3.0.3",
     "morgan": "^1.10.0",
-    "undici": "^6.18.2"
+    "undici": "^6.19.2"
   },
   "config": {
     "commitizen": {
