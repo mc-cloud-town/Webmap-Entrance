@@ -1,21 +1,16 @@
-FROM golang:1.22 AS builder
-WORKDIR /src
+FROM golang:1.23-alpine AS builder
 
-COPY go.mod .
-COPY go.sum .
-RUN --mount=type=cache,target=/go/pkg/mod go mod download
-
-COPY . .
-
-RUN --mount=type=cache,target=/root/.cache/go-build \
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/app .
-
-FROM gcr.io/distroless/base-debian12 AS runtime
+RUN apk add --no-cache git ca-certificates
 WORKDIR /app
-COPY --from=builder /out/app /app/app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -ldflags='-s -w' -o main
 
-ENV PORT=3000
+FROM alpine:latest AS runner
+
+WORKDIR /app
+COPY --from=builder /app/main .
 EXPOSE 3000
 
-USER nonroot:nonroot
-ENTRYPOINT ["/app/app"]
+CMD ["./main"]
