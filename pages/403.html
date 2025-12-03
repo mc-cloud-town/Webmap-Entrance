@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>403 禁止訪問 - CTEC 網頁地圖</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Noto+Sans+TC:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Varela Round', 'Noto Sans TC', sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+        color: #2c3e50;
+      }
+      .main {
+        width: 90%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 30px;
+        background-color: #ffffffe6;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 24px;
+        box-shadow: 0 10px 40px #00000040;
+        border: 1px solid #ffffff80;
+        text-align: center;
+      }
+      .error-code {
+        font-size: 5rem;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 10px;
+        background: -webkit-linear-gradient(45deg, #e53935, #e35d5b);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 4px rgba(231, 76, 60, 0.3));
+      }
+      h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      p {
+        color: #666;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+      img {
+        max-height: 180px;
+        width: auto;
+        transition: transform 0.3s ease;
+        filter: sepia(1) hue-rotate(-50deg) saturate(2)
+          drop-shadow(0 5px 10px rgba(231, 76, 60, 0.3));
+      }
+      img:hover {
+        transform: scale(1.05);
+      }
+      .action-btn {
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        background-color: #e74c3c;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        transition: all 0.2s ease;
+      }
+      .action-btn:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.5);
+      }
+      .action-btn:active {
+        transform: translateY(0);
+      }
+      @media (max-width: 480px) {
+        .main {
+          padding: 30px 20px;
+        }
+        .error-code {
+          font-size: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="error-code">403</div>
+      <h2>禁止進入區域</h2>
+      <img
+        src="/$__hook_sess___/static/all-noback.png"
+        alt="403 Access Denied"
+      />
+      <p>
+        阿勒？你似乎沒有權限進入這個地圖區域喔！<br />可能是身分組不足，或是迷路了<br />（如果你確定自己應該有權限，請聯絡管理員）
+      </p>
+      <a href="/$__hook_sess___/login" class="action-btn">
+        重新登入 / 切換帳號
+      </a>
+    </div>
+  </body>
+</html>
