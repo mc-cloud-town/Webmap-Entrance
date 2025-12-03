@@ -1,21 +1,21 @@
-FROM node:20 as builder
+FROM golang:1.22 AS builder
+WORKDIR /src
 
-WORKDIR /app
-
-COPY package.json .
-COPY yarn.lock .
-
-RUN yarn install
+COPY go.mod .
+COPY go.sum .
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
 
 COPY . .
-RUN yarn build
 
-FROM node:20 AS production
+RUN --mount=type=cache,target=/root/.cache/go-build \
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/app .
 
+FROM gcr.io/distroless/base-debian12 AS runtime
 WORKDIR /app
+COPY --from=builder /out/app /app/app
 
-COPY --from=builder /app .
-
-CMD yarn start
-
+ENV PORT=3000
 EXPOSE 3000
+
+USER nonroot:nonroot
+ENTRYPOINT ["/app/app"]
