@@ -36,11 +36,10 @@ func mustEnv(key string) string {
 
 func loadConfig() {
 	env := os.Getenv("GO_ENV")
+	devMode := false
 	if env == "" || env == "development" {
 		_ = godotenv.Load()
-		cfg.DevMode = true
-	} else {
-		cfg.DevMode = false
+		devMode = true
 	}
 
 	cfg = appConfig{
@@ -55,6 +54,7 @@ func loadConfig() {
 		},
 		TargetURL:     mustEnv("TARGET_URL"),
 		SessionSecret: mustEnv("SESSION_SECRET"),
+		DevMode:       devMode,
 	}
 
 	u, _ := url.Parse(cfg.DiscordRedirectURI)

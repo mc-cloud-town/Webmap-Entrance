@@ -184,6 +184,7 @@ func main() {
 	proxy := newReverseProxy(cfg.TargetURL)
 
 	r := gin.Default()
+	r.TrustedPlatform = gin.PlatformCloudflare
 	store := cookie.NewStore([]byte(cfg.SessionSecret))
 	store.Options(sessions.Options{
 		Path:     "/",
