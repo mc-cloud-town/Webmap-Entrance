@@ -261,8 +261,6 @@ func main() {
 		session.Set("user_id", user.ID)
 		session.Save()
 
-		println(session.Get("user_id"))
-
 		ctx.Redirect(302, "/")
 	})
 
